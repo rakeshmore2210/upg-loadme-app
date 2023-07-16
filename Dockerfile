@@ -4,5 +4,5 @@ COPY package*.json .
 COPY server.js .
 RUN npm install
 RUN npm ci --omit=dev
-EXPOSE 8080
+EXPOSE 80
 CMD [ "node", "server.js" ]
