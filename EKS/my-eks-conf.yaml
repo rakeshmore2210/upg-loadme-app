@@ -3,26 +3,26 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: my-eks-201
+  name: my-eks-205
   region: us-east-1
   version: "1.26"
 
 vpc:
-  id: "vpc-086d900dc73769e59"
+  id: "vpc-0a1a7aefd384efa01"
   subnets:
     public:
-      my-public-201-a:
-        id: "subnet-02d65773a35a64e91"
+      my-public-205-a:
+        id: "subnet-0b32a3a5a67000ef6"
         az: "us-east-1a"
-      my-public-201-b:
-        id: "subnet-060cc4333d78fe403"
+      my-public-205-b:
+        id: "subnet-0f1499d0a0bda4133"
         az: "us-east-1b"
     private:
-      my-private-201-a:
-        id: "subnet-00ffd23735c154c2a"
+      my-private-205-a:
+        id: "subnet-0d61a727e7a6168b4"
         az: "us-east-1a"
-      my-private-201-b:
-        id: "subnet-0c334846b0cc7b1ff"
+      my-private-205-b:
+        id: "subnet-0ea41bdacecf40669"
         az: "us-east-1b"
   clusterEndpoints:
     publicAccess: true
@@ -66,11 +66,11 @@ iam:
         autoScaler: true
 
 nodeGroups:
-  - name: pvt-201-a-1
+  - name: pvt-205-a-1
     labels: { role: workers }
     tags:
       k8s.io/cluster-autoscaler/enabled: "true"
-      k8s.io/cluster-autoscaler/my-eks-201: "shared"
+      k8s.io/cluster-autoscaler/my-eks-205: "shared"
     instancesDistribution:
       instanceTypes:
         - t2.medium
@@ -79,12 +79,12 @@ nodeGroups:
     maxSize: 3
     privateNetworking: true
     subnets:
-      - my-private-201-a
-  - name: pub-201-a-1
+      - my-private-205-a
+  - name: pub-205-a-1
     labels: { role: workers }
     tags:
       k8s.io/cluster-autoscaler/enabled: "true"
-      k8s.io/cluster-autoscaler/my-eks-201: "shared"
+      k8s.io/cluster-autoscaler/my-eks-205: "shared"
     instancesDistribution:
       instanceTypes:
         - t2.medium
@@ -92,15 +92,15 @@ nodeGroups:
     minSize: 0
     maxSize: 1
     subnets:
-      - my-public-201-a
-  - name: pub-201-a-1-taint
+      - my-public-205-a
+  - name: pub-205-a-1-taint
     labels: { role: workers }
     tags:
       k8s.io/cluster-autoscaler/enabled: "true"
-      k8s.io/cluster-autoscaler/my-eks-201: "shared"
+      k8s.io/cluster-autoscaler/my-eks-205: "shared"
     taints:
       - key: nodegroup
-        value: pub-201-a-1-taint
+        value: pub-205-a-1-taint
         effect: NoSchedule
     instancesDistribution:
       instanceTypes:
@@ -109,4 +109,4 @@ nodeGroups:
     minSize: 0
     maxSize: 5
     subnets:
-    - my-public-201-a
+    - my-public-205-a

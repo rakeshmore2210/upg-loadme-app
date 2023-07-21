@@ -20,7 +20,7 @@ spec:
       tolerations:
         - key: nodegroup
           operator: Equal
-          value: pub-201-a-1-taint
+          value: pub-205-a-1-taint
           effect: NoSchedule
       containers:
         - name: upg-loadme
@@ -50,7 +50,7 @@ metadata:
 spec:
   selector:
     app: upg-loadme
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - name: app-port
     protocol: TCP
